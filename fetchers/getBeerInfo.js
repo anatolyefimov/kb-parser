@@ -25,7 +25,7 @@ async function getBeerInfo(url) {
         brewery = document.querySelector('.pr_card_char_item--MANUFACTURER_NAME p').textContent;
     } catch (e) {
         brewery = ''
-        console.log('without brewery', url)
+        console.log('without brewery', kb.main + url)
     }
 
     return { name, img, description, volume, country, brewery };
