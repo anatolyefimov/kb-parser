@@ -31,12 +31,12 @@ function getBeerInfo(url, id, beers) {
                 } catch (e) {
                     brewery = ''
                 }
-
+                
                 beers[id] = { name, img, description, volume, country, brewery }
             }
             else {
-                // console.log('fuck up')
-                 console.log(res.statusCode)
+                console.log('fuck up')
+                //  console.log(res.statusCode)
             }
         })
    }).on('error', (e) => {
