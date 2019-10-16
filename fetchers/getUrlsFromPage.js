@@ -1,20 +1,29 @@
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const fetch = require('node-fetch')
+const https = require('https')
+
 const kb = require('../urls.js')
 
-async function getUrlsFromPage(number) {
-    let res = await fetch(`${kb.catalogs.imported}?PAGEN_1=${number}`, {
-        redirect: 'manual'
-    });
-    res = await res.text();
-    const { document } = (new JSDOM(res)).window;
+function getUrlsFromPage(number, buffer) {
+    https.get(`https://krasnoeibeloe.ru/catalog/rossiyskoe/?PAGEN_1=${number}`, res => {
+        let html = '';
 
-    let anchors = document.querySelectorAll('.product_item_name > a');
-    anchors = Array.prototype.slice.call(anchors);
+        res.on('data', (data) => {
+            html += data;
+        })
 
-    let urls = anchors.map(anchor => anchor.getAttribute('href'));
-    return urls;
+        res.on('end', () => {
+            // console.log(res.statusCode)
+            const { document } = (new JSDOM(html)).window;
+
+            let anchors = document.querySelectorAll('.product_item_name > a');
+            anchors = Array.prototype.slice.call(anchors);
+            let urls = anchors.map(anchor => anchor.getAttribute('href'));
+            buffer.push(urls);
+        })
+    }).on('error', (e) => {
+        console.log(error)
+    })
 }
 
 module.exports = getUrlsFromPage;

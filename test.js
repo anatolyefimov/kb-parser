@@ -1,8 +1,24 @@
-const fetch = require('node-fetch')
-const kb = require('./urls.js')
+const getUrlsFromPage = require('./fetchers/getUrlsFromPage.js')
+const getBeerInfo = require('./fetchers/getBeerInfo.js');
 
-fetch(`https://krasnoeibeloe.ru/catalog/importnoe_pivo/?PAGEN_1=1`, {
-        redirect: 'manual'
-    })
-    .then(res => res.text())
-    .then(res => console.log(res))
+// const urls = require('./paths.js')
+const urls = [];
+// console.log(urls.length)
+
+// setTimeout(() => {
+//     urls = urls.flat()
+//     console.log(urls.length)
+//     urls.forEach(url => {
+//         getBeerInfo(url, beers);
+//     })
+//     // setTimeout(() => {
+//     //     console.log(beers)
+//     // }, 3000);
+// }, 3000);
+
+
+[1, 2, 3, 4].forEach(number => getUrlsFromPage(number, urls))
+
+setTimeout(() => {
+    console.log(urls.flat(), urls.flat().length)
+}, 3000);

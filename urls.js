@@ -1,6 +1,6 @@
 kb = {
-    main: 'http://krasnoeibeloe.ru',
-    catalog: 'http://krasnoeibeloe.ru/catalog/',
+    main: 'https://krasnoeibeloe.ru',
+    catalog: 'https://krasnoeibeloe.ru/catalog/',
     catalogs: {
         russian: 'https://krasnoeibeloe.ru/catalog/rossiyskoe/',
         imported: 'https://krasnoeibeloe.ru/catalog/importnoe_pivo/'
