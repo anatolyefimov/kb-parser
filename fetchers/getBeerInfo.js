@@ -5,7 +5,7 @@ const kb = require('../urls.js')
 
 const https = require('https')
 
-function getBeerInfo(url, beers) {
+function getBeerInfo(url, id, beers) {
    https.get(kb.main + url , res => {
         let html = '';
 
@@ -32,11 +32,11 @@ function getBeerInfo(url, beers) {
                     brewery = ''
                 }
 
-                beers.push({ name, img, description, volume, country, brewery })
+                beers[id] = { name, img, description, volume, country, brewery }
             }
             else {
                 // console.log('fuck up')
-                console.log(res.statusCode)
+                 console.log(res.statusCode)
             }
         })
    }).on('error', (e) => {
