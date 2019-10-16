@@ -10,7 +10,7 @@ async function getBeerInfo(url) {
 
     let img;
     try {
-        img = 'https:' + document.querySelector(".pr_card_images_slide img").getAttribute('src');
+        img = 'https:' + document.querySelector(".pr_card_images_slide a").getAttribute('href');
     } catch (e) {
         img = ''
         console.log('without img', kb.main + url)
