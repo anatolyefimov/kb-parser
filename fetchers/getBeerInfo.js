@@ -13,9 +13,10 @@ function getBeerInfo(url, beers) {
             html += data;
         })
         res.on('end', () => {
-            const { document } = (new JSDOM(res)).window;
+            const { document } = (new JSDOM(html)).window;
             if (res.statusCode === 200) {
-                let img = document.querySelector(".pr_card_images_slide a").getAttribute('href');
+
+                let img = 'https:' + document.querySelector(".pr_card_images_slide a").getAttribute('href');
 
                 // console.log(img)
 
@@ -34,7 +35,8 @@ function getBeerInfo(url, beers) {
                 beers.push({ name, img, description, volume, country, brewery })
             }
             else {
-                console.log('fuck up')
+                // console.log('fuck up')
+                console.log(res.statusCode)
             }
         })
    }).on('error', (e) => {
