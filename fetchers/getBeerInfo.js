@@ -14,9 +14,17 @@ async function getBeerInfo(url) {
     } catch (e) {
         img = ''
         console.log('without img', kb.main + url)
+
     }
 
-    let name = document.querySelector('h1').textContent;
+    let name
+    try {
+        name = document.querySelector('h1').textContent;
+    } catch (e) {
+        name = ''
+        console.log('without name???', kb.main + url)
+
+    }
     let description = document.querySelector('.pr_card_descr_visible').textContent.trim();
     let volume = document.querySelector('.pr_card_char_item--VOLUME p').textContent;
     let country = document.querySelector('.pr_card_char_item--COUNTRY p').textContent;
