@@ -3,7 +3,7 @@ const getBeerInfo = require('./fetchers/getBeerInfo.js');
 const fs = require('fs')
 
 const urls = require('./paths.js')
-beersJSON = fs.readFileSync('./beers.json', 'utf8');
+beersJSON = fs.readFileSync('./beers_russian.json', 'utf8');
 let beers = JSON.parse(beersJSON);
 
 let flag = false;
@@ -18,7 +18,7 @@ if (Object.keys(beers).length < 82) {
     setTimeout(() => {
         if (flag) {
             // console.log(beers);
-            fs.writeFileSync('./beers.json', JSON.stringify(beers, null, '\t'), 'utf8')
+            fs.writeFileSync('./beers_russian.json', JSON.stringify(beers, null, '\t'), 'utf8')
         }
         console.log('stop')
         console.log(Object.keys(beers).length)
