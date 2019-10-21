@@ -8,13 +8,13 @@ const kb = require('../urls.js')
 async function getBeerInfo(url) {
     let res = await fetch(kb.main + url);
     html = await res.text();
-
+    console.log(kb.main + url)
     if (res.status === 200) {
         const { document } = (new JSDOM(html)).window;
 
         let imgUrl = 'https:' + document.querySelector(".pr_card_images_slide a").getAttribute('href');
         console.log(imgUrl)
-        let imgName = imgUrl.match(/\w+\.(jpg|png)/)[0];
+        let imgName = imgUrl.match(/\w+\.(jpg|png)/i)[0];
         let img = await fetch(imgUrl);
         const dest = fs.createWriteStream('./images/' + imgName);
         img.body.pipe(dest);
